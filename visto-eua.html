@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visto USA — Despachante de Vistos para os EUA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #06111F;
+    --navy-mid: #0D2035;
+    --blue: #2563EB;
+    --blue-light: #3B82F6;
+    --gold: #C8932A;
+    --gold-light: #E8B84B;
+    --white: #FFFFFF;
+    --muted: #7A9AB2;
+    --body-bg: #F5F7FA;
+    --text: #0F1C28;
+    --text-secondary: #4A6070;
+    --border: rgba(0,0,0,0.08);
+    --green: #16A34A;
+    --container: 860px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--body-bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* container interno centralizado */
+  .inner {
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(6,17,31,0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid rgba(255,255,255,0.07);
+    height: 56px;
+  }
+  .nav-inner {
+    height: 56px;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--white);
+  }
+  .nav-brand span { color: var(--gold-light); }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--green);
+    color: #fff;
+    font-size: 13px; font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: opacity .2s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { opacity: .85; }
+  .nav-cta svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    width: 100%;
+    padding: 7rem 1.5rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(37,99,235,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(200,147,42,0.15);
+    border: 0.5px solid rgba(200,147,42,0.4);
+    color: var(--gold-light);
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 30px;
+    margin-bottom: 1.4rem;
+    animation: fadeUp .6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    animation: fadeUp .6s .1s ease both;
+  }
+  .hero h1 em { color: var(--gold-light); font-style: normal; }
+  .hero-sub {
+    font-size: clamp(14px, 2vw, 16px);
+    color: var(--muted);
+    font-weight: 300; line-height: 1.7;
+    max-width: 480px; margin: 0 auto 2rem;
+    animation: fadeUp .6s .2s ease both;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--green);
+    color: #fff;
+    font-size: 15px; font-weight: 500;
+    padding: 14px 30px;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: transform .15s, box-shadow .15s;
+    animation: fadeUp .6s .3s ease both;
+  }
+  .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(22,163,74,0.35); }
+  .hero-cta svg { width: 20px; height: 20px; fill: currentColor; }
+  .hero-note {
+    margin-top: .9rem;
+    font-size: 12px; color: var(--muted);
+    animation: fadeUp .6s .4s ease both;
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    width: 100%;
+    background: var(--navy-mid);
+    border-top: 0.5px solid rgba(255,255,255,0.06);
+    border-bottom: 0.5px solid rgba(255,255,255,0.06);
+    padding: 1rem 1.5rem;
+  }
+  .trust-bar-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap;
+    justify-content: center; gap: 1rem 2.5rem;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 13px; color: var(--muted); font-weight: 400;
+  }
+  .trust-item svg { width: 14px; height: 14px; fill: var(--gold); flex-shrink: 0; }
+
+  /* ── SEÇÕES GENÉRICAS ── */
+  .section-bg-white { width: 100%; background: var(--white); }
+  .section-bg-body  { width: 100%; background: var(--body-bg); }
+  .section-pad { padding: 4rem 1.5rem; }
+
+  .section-label {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--blue-light); margin-bottom: .5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    color: var(--text); line-height: 1.25;
+    margin-bottom: 1.75rem;
+  }
+
+  /* ── CARDS DE SERVIÇOS ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  @media (min-width: 640px) {
+    .card-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .scard {
+    background: var(--body-bg);
+    border: 0.5px solid var(--border);
+    border-radius: 14px;
+    padding: 1.2rem;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .scard:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+  .scard-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: #EFF6FF;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: .8rem;
+  }
+  .scard-icon svg { width: 18px; height: 18px; stroke: var(--blue); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .scard h3 { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .scard p  { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+  /* ── COMO FUNCIONA ── */
+  .how-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  @media (min-width: 640px) {
+    .how-grid { grid-template-columns: repeat(2, 1fr); gap: 0 2rem; }
+  }
+  .how-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 1rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .how-item:last-child { border-bottom: none; }
+  @media (min-width: 640px) {
+    .how-item:nth-child(3) { border-bottom: none; }
+  }
+  .how-num {
+    width: 28px; height: 28px; flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--gold-light);
+    font-size: 12px; font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+  .how-text h4 { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .how-text p  { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
+
+  /* ── TIPOS DE VISTO ── */
+  .visa-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .visa-chip {
+    display: flex; align-items: center; gap: 7px;
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: 30px;
+    padding: 8px 16px;
+    font-size: 13px; color: var(--text);
+  }
+  .visa-chip svg { width: 15px; height: 15px; stroke: var(--blue); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+  /* ── CTA FINAL ── */
+  .cta-section {
+    width: 100%;
+    background: var(--navy);
+    padding: 5rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(37,99,235,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: var(--white); margin-bottom: .75rem;
+    line-height: 1.2;
+  }
+  .cta-section h2 em { color: var(--gold-light); font-style: normal; }
+  .cta-section p { font-size: 15px; color: var(--muted); margin-bottom: 2rem; line-height: 1.65; }
+  .cta-big {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--green);
+    color: #fff;
+    font-size: 16px; font-weight: 500;
+    padding: 16px 34px;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .cta-big:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(22,163,74,0.4); }
+  .cta-big svg { width: 22px; height: 22px; fill: currentColor; }
+
+  /* ── FOOTER ── */
+  footer {
+    width: 100%;
+    background: #040D18;
+    border-top: 0.5px solid rgba(255,255,255,0.06);
+    padding: 1.5rem 1.5rem;
+    text-align: center;
+    font-size: 12px; color: rgba(122,154,178,0.55);
+  }
+
+  /* ── BOTÃO FLUTUANTE ── */
+  .float-wpp {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+    width: 54px; height: 54px; border-radius: 50%;
+    background: var(--green);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(22,163,74,0.5);
+    text-decoration: none;
+    transition: transform .15s;
+  }
+  .float-wpp:hover { transform: scale(1.08); }
+  .float-wpp svg { width: 28px; height: 28px; fill: #fff; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">Visto <span>USA</span></div>
+    <a class="nav-cta" href="https://wa.me/+5522997117461" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.09 21.5l4.432-1.327A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+      Agendar agora
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">🇺🇸 Especialista em Vistos para os EUA</div>
+  <h1>Seu visto americano<br><em>sem complicação</em></h1>
+  <p class="hero-sub">Cuido de todo o processo pra você — da documentação até a aprovação. Rápido, seguro e sem dor de cabeça.</p>
+  <a class="hero-cta" href="https://wa.me/+5522997117461" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.09 21.5l4.432-1.327A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+    Falar pelo WhatsApp
+  </a>
+  <p class="hero-note">Atendimento de segunda a sábado</p>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Atendimento personalizado
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Processo 100% orientado
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Suporte direto via WhatsApp
+    </div>
+  </div>
+</div>
+
+<!-- SERVIÇOS -->
+<div class="section-bg-white">
+  <div class="section-pad inner">
+    <p class="section-label">O que você recebe</p>
+    <h2 class="section-title">Tudo que você precisa<br>num só lugar</h2>
+    <div class="card-grid">
+      <div class="scard">
+        <div class="scard-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <h3>Análise de documentos</h3>
+        <p>Verifico tudo antes de submeter, sem surpresas</p>
+      </div>
+      <div class="scard">
+        <div class="scard-icon"><svg viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
+        <h3>Agendamento consular</h3>
+        <p>Entrevista e biometria no consulado</p>
+      </div>
+      <div class="scard">
+        <div class="scard-icon"><svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div>
+        <h3>Preenchimento do DS-160</h3>
+        <p>Formulário consular preenchido certinho</p>
+      </div>
+      <div class="scard">
+        <div class="scard-icon"><svg viewBox="0 0 24 24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div>
+        <h3>Suporte pelo WhatsApp</h3>
+        <p>Acompanhamento direto do início ao fim</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMO FUNCIONA -->
+<div class="section-bg-body">
+  <div class="section-pad inner">
+    <p class="section-label">Passo a passo</p>
+    <h2 class="section-title">Como funciona</h2>
+    <div class="how-grid">
+      <div class="how-item">
+        <div class="how-num">1</div>
+        <div class="how-text">
+          <h4>Me chama no WhatsApp</h4>
+          <p>Conte o motivo da viagem e a data prevista</p>
+        </div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">2</div>
+        <div class="how-text">
+          <h4>Receba a lista personalizada</h4>
+          <p>Documentos específicos pro seu perfil e tipo de visto</p>
+        </div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">3</div>
+        <div class="how-text">
+          <h4>Cuido de todo o processo</h4>
+          <p>DS-160, agendamentos e orientação para entrevista</p>
+        </div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">4</div>
+        <div class="how-text">
+          <h4>Você viaja tranquilo</h4>
+          <p>Visto aprovado no passaporte, pronto pra embarcar</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TIPOS DE VISTO -->
+<div class="section-bg-white">
+  <div class="section-pad inner">
+    <p class="section-label">Especialidade</p>
+    <h2 class="section-title">Vistos americanos<br>que atendo</h2>
+    <div class="visa-chips">
+      <div class="visa-chip">
+        <svg viewBox="0 0 24 24"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        B1/B2 — Turismo e Negócios
+      </div>
+      <div class="visa-chip">
+        <svg viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        F1 — Estudante
+      </div>
+      <div class="visa-chip">
+        <svg viewBox="0 0 24 24"><path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        H1B — Trabalho
+      </div>
+      <div class="visa-chip">
+        <svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        K1 — Noivo(a)
+      </div>
+      <div class="visa-chip">
+        <svg viewBox="0 0 24 24"><path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Outros — Me consulte
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="cta-section">
+  <h2>Pronto pra <em>viajar</em>?</h2>
+  <p>Me chame agora no WhatsApp e já saio<br>com a sua lista de documentos hoje mesmo.</p>
+  <a class="cta-big" href="https://wa.me/+5522997117461" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.09 21.5l4.432-1.327A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+    Falar com João Murilo
+  </a>
+</div>
+
+<footer>
+  João Murilo — Despachante de Vistos para os EUA &nbsp;·&nbsp; +55 22 99711-7461
+</footer>
+
+<!-- BOTÃO FLUTUANTE -->
+<a class="float-wpp" href="https://wa.me/+5522997117461" target="_blank" rel="noopener" aria-label="Contato pelo WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.09 21.5l4.432-1.327A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+</a>
+
+</body>
+</html>
